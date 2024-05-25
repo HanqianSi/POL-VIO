@@ -1,0 +1,11 @@
+Header header
+float32[] startx
+float32[] starty
+float32[] pointax
+float32[] pointay
+float32[] pointbx
+float32[] pointby
+float32[] pointcx
+float32[] pointcy
+float32[] endx
+float32[] endy

@@ -1,0 +1,9 @@
+<launch>
+    <!-- <remap from="/cam0/image_raw" to="/cam0/image_raw" />  -->
+    <node pkg="hawp" name="ros_predict" type="ros_predict.py" output="screen" cwd="node">
+        <param name="config_file" type="string" value="$(find hawp)/src/config-files/hawp.yaml" />
+        <!--<param name="iterations"          value="1.0"/> -->
+        <!--remap from="~estimated_odometry" to="/vins_estimator/odometry" /> -->
+    </node>
+
+</launch>

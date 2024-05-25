@@ -1,0 +1,23 @@
+<launch>
+    <arg name="config_path" default = "$(find line_feature_tracker)/../config/euroc/euroc_config_fix_extrinsic.yaml" />
+	  <arg name="vins_path" default = "$(find line_feature_tracker)/../config/../" />
+
+    <node name="rvizvisualisation" pkg="rviz" type="rviz" output="log" args="-d $(find polvio_estimator)/../config/vins_rviz_config.rviz" />
+
+    <node name="line_feature_tracker" pkg="line_feature_tracker" type="line_feature_tracker" output="log">
+        <param name="config_file" type="string" value="$(arg config_path)" />
+        <param name="vins_folder" type="string" value="$(arg vins_path)" />
+    </node>    
+
+    <node name="polvio_estimator" pkg="polvio_estimator" type="polvio_estimator" output="screen">
+       <param name="config_file" type="string" value="$(arg config_path)" />
+       <param name="vins_folder" type="string" value="$(arg vins_path)" />
+    </node>
+
+       <remap from="/cam0/image_raw" to="/cam0/image_raw" />
+      <node pkg="hawp" name="ros_predict" type="ros_predict.py" output="screen" cwd="node">
+        <param name="config_file" type="string" value="$(find hawp)/src/config-files/hawp.yaml" />
+    </node>
+
+</launch>
+
